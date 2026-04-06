@@ -75,8 +75,9 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', 'Space Grotesk', sans-serif; user-select: none; -webkit-user-select: none; }
         html { scroll-behavior: smooth; }
-        html, body { height: 100%; background-color: var(--bg-main); color: var(--text-main); }
+        html, body { height: 100%; max-width: 100%; background-color: var(--bg-main); color: var(--text-main); }
         body { overflow-x: hidden; width: 100%; box-sizing: border-box; }
+        img, video, iframe { max-width: 100%; }
 
         /* SPLASH SCREEN */
         #splash-screen {
@@ -172,6 +173,7 @@
             min-height: 100vh;
             width: 100%;
             background-color: var(--bg-main);
+            overflow-x: clip;
         }
 
         .side-ad-left {
@@ -182,7 +184,7 @@
             align-items: flex-start;
             justify-content: center;
             padding-top: 30px;
-            overflow-y: auto;
+            overflow: hidden;
             border-right: 1px solid var(--border-color);
         }
 
@@ -197,13 +199,14 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
+            overflow-y: visible;
             padding-bottom: 80px;
             width: 100%;
+            min-width: 0;
         }
 
         .ad-wrapper {
-            width: 320px;
+            width: min(100%, 320px);
             height: 50px;
             margin: 0 auto;
             overflow: hidden; 
@@ -214,6 +217,7 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 5px;
+            max-width: 100%;
         }
 
         .side-ad-wrapper {
@@ -555,6 +559,8 @@
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
+            gap: 12px;
+            flex-wrap: wrap;
             color: #fff; 
             z-index: 10;
             border-bottom: 1px solid var(--border-color);
@@ -806,6 +812,40 @@
             color: var(--text-main);
         }
 
+        header > div:first-child,
+        .viewer-header > div,
+        .home-content,
+        footer {
+            min-width: 0;
+        }
+
+        header > div:first-child {
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .browser-input-group {
+            flex-wrap: wrap;
+            align-items: stretch;
+        }
+
+        .browser-input,
+        .browser-go-btn,
+        .viewer-url-bar,
+        .copy-btn,
+        #direct-open-btn {
+            min-width: 0;
+        }
+
+        .viewer-url-bar {
+            flex: 1 1 320px;
+            margin: 0;
+        }
+
+        .social-icon {
+            text-decoration: none;
+        }
+
         .tab-content {
             display: none;
             animation: fadeIn 0.5s ease, slideInUp 0.6s ease;
@@ -928,14 +968,20 @@
         .sitemap-link:hover { color: var(--premium); text-decoration: underline; }
 
         /* CUSTOM SCROLLBAR */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-main); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary), var(--premium)); border-radius: 10px; border: 2px solid var(--bg-main); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+            background: transparent;
+        }
 
         /* BACK TO TOP BUTTON */
         #backToTop {
-            position: fixed; bottom: 90px; right: 25px;
+            position: fixed; bottom: 165px; right: 14px;
             width: 50px; height: 50px; border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--premium));
             color: white; display: none; align-items: center; justify-content: center;
@@ -1293,13 +1339,77 @@
         @keyframes fadeOutRight { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(50px); } }
 
         @media (max-width: 768px) {
+            header { padding: 36px 16px; }
             header h1 { font-size: 36px; }
             .splash-logo { font-size: 70px; }
             .grid-container { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
             .home-content { padding: 25px 18px; }
             .quick-access-tabs { gap: 5px; }
             .quick-tab { padding: 10px 14px; font-size: 12px; }
-            #backToTop { bottom: 100px; right: 15px; width: 40px; height: 40px; }
+            #backToTop { bottom: 175px; right: 10px; width: 40px; height: 40px; }
+            .header-ad-section,
+            .in-grid-ad,
+            .ad-section,
+            .ad-section-horizontal,
+            .smart-browser-container,
+            .downloader-container,
+            .info-hub-container,
+            .info-section,
+            .seo-section,
+            footer {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+            .hero-container {
+                height: auto;
+                min-height: 360px;
+            }
+            .hero-slide {
+                padding: 32px 22px;
+                align-items: flex-end;
+            }
+            .hero-title { font-size: 30px; }
+            .hero-desc { font-size: 14px; }
+            .browser-input-group {
+                flex-direction: column;
+            }
+            .browser-go-btn {
+                width: 100%;
+            }
+            .viewer-header {
+                padding: 12px 14px;
+            }
+            .viewer-header > div:first-child,
+            .viewer-header > div:last-child {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .viewer-header > div:last-child {
+                gap: 10px !important;
+                flex-wrap: wrap;
+            }
+            .viewer-url-bar {
+                order: 3;
+                flex-basis: 100%;
+            }
+            .copy-btn,
+            #direct-open-btn {
+                flex: 1 1 120px;
+                text-align: center;
+                margin-left: 0;
+            }
+            .status-badge {
+                align-self: flex-start;
+            }
+            .sitemap-link {
+                margin: 10px 8px;
+            }
+            .floating-pro-bot {
+                bottom: 105px;
+                right: 16px;
+                width: 54px;
+                height: 54px;
+            }
         }
     </style>
   <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
@@ -1332,9 +1442,9 @@
       </a>
   </nav>
 
-  <div class="floating-pro-bot" id="pro-bot" onclick="showToast('How can I assist you today?', 'info')">
+  <a class="floating-pro-bot" id="pro-bot" href="https://t.me/MergedMovies" target="_blank" rel="noopener noreferrer" aria-label="Open Telegram channel MergedMovies" title="Join Telegram: MergedMovies">
       <i data-lucide="message-square"></i>
-  </div>
+  </a>
   <!-- --- END NEW PRO V5 UI ELEMENTS --- -->
   
   <div class="floating-ad-left" id="float-l">
@@ -1650,7 +1760,7 @@
          <a href="/sitemap.xml" target="_blank" class="sitemap-link">📂 Sitemap (XML)</a>
      </div>
      <div class="social-links">
-      <div class="social-icon" title="Telegram"><i data-lucide="send"></i></div>
+      <a class="social-icon" href="https://t.me/MergedMovies" target="_blank" rel="noopener noreferrer" title="Telegram MergedMovies"><i data-lucide="send"></i></a>
       <div class="social-icon" title="Instagram"><i data-lucide="instagram"></i></div>
       <div class="social-icon" title="Twitter"><i data-lucide="twitter"></i></div>
       <div class="social-icon" title="Facebook"><i data-lucide="facebook"></i></div>
@@ -2076,7 +2186,7 @@
                     <div class="contact-item">
                         <div class="contact-item-icon">💬</div>
                         <div class="contact-item-label">Telegram</div>
-                        <div class="contact-item-value">@MergedMoviesPro</div>
+                        <div class="contact-item-value">@MergedMovies</div>
                     </div>
                 </div>
             </div>
