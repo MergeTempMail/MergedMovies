@@ -559,8 +559,6 @@
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
-            gap: 12px;
-            flex-wrap: wrap;
             color: #fff; 
             z-index: 10;
             border-bottom: 1px solid var(--border-color);
@@ -813,7 +811,6 @@
         }
 
         header > div:first-child,
-        .viewer-header > div,
         .home-content,
         footer {
             min-width: 0;
@@ -831,15 +828,9 @@
 
         .browser-input,
         .browser-go-btn,
-        .viewer-url-bar,
         .copy-btn,
         #direct-open-btn {
             min-width: 0;
-        }
-
-        .viewer-url-bar {
-            flex: 1 1 320px;
-            margin: 0;
         }
 
         .social-icon {
@@ -1375,28 +1366,6 @@
             }
             .browser-go-btn {
                 width: 100%;
-            }
-            .viewer-header {
-                padding: 12px 14px;
-            }
-            .viewer-header > div:first-child,
-            .viewer-header > div:last-child {
-                width: 100%;
-                justify-content: space-between;
-            }
-            .viewer-header > div:last-child {
-                gap: 10px !important;
-                flex-wrap: wrap;
-            }
-            .viewer-url-bar {
-                order: 3;
-                flex-basis: 100%;
-            }
-            .copy-btn,
-            #direct-open-btn {
-                flex: 1 1 120px;
-                text-align: center;
-                margin-left: 0;
             }
             .status-badge {
                 align-self: flex-start;
