@@ -1741,13 +1741,11 @@
     <div class="viewer-header">
      <div style="display: flex; align-items: center; gap: 10px;">
       <button class="back-btn" onclick="goHome()"><i data-lucide="arrow-left" style="width:18px;"></i></button>
-      <button class="back-btn" id="stop-btn" onclick="stopMedia()" title="Stop & Clear"><i data-lucide="square" style="width:16px;"></i></button>
      </div>
      <div class="viewer-url-bar">
       <i data-lucide="globe" class="viewer-url-icon"></i> <input type="text" class="viewer-url-input" id="viewer-url-input" placeholder="Enter URL..." onkeyup="if(event.key==='Enter') browseUrl()">
      </div>
      <div style="display: flex; align-items: center; gap: 8px;">
-      <button class="back-btn" onclick="toggleCinemaMode()" title="Cinema Mode"><i data-lucide="monitor" style="width:16px;"></i></button>
       <button class="copy-btn" id="viewer-download-btn" onclick="downloadViewerMedia()" style="display:none; background: var(--success); border-color: var(--success); color: white;">📥 DOWNLOAD</button>
       <button class="copy-btn" id="copy-url-btn" onclick="copyViewerUrl()">📋 COPY</button> <a href="#" id="direct-open-btn" target="_blank" style="background:linear-gradient(135deg, var(--primary), var(--premium));color:white;padding:9px 16px;border-radius:10px;text-decoration:none;font-size:12px;font-weight:700;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">DIRECT</a>
      </div>
